@@ -607,6 +607,8 @@
     <FileCreate onmatch="exclude">
 	  <Image>C:\Program Files\Common Files\McAfee\SystemCore\mcshield.exe</Image>
 	  <Image condition="end with">AEMAgent.exe</Image>
+	  <Image condition="end with">miniunz.exe</Image>
+	  <Image condition="end with">invcol.exe</Image>
 	  <Image condition="end with">java.exe</Image>
 	  <Image condition="end with">beserver.exe</Image>
 	  <Image condition="end with">CagService.exe</Image>
