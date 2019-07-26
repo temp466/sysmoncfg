@@ -1,4 +1,4 @@
-<!--0.3-->
+<!--0.7-->
 <Sysmon schemaversion="4.1">
   <EventFiltering>
     <ProcessCreate onmatch="include">
@@ -126,6 +126,7 @@
 	  <Image condition="end with">MpCmdRun.exe</Image>
 	  <Image condition="end with">AEMAgent.exe</Image>
 	  <Image condition="end with">dsregcmd.exe</Image>
+	  <Image condition="contains">McAfee</Image>
 	  <Image condition="end with">gpupdate.exe</Image>
 	  <Image condition="end with">Sysmon64.exe</Image>
 	  <Image condition="end with">rundll32.exe</Image>
@@ -185,6 +186,7 @@
       <Image>C:\Windows\System32\MusNotificationUx.exe</Image>
 	  <Image>C:\Windows\System32\dsregcmd.exe</Image>
 	  <Image>C:\Windows\System32\gpupdate.exe</Image>
+	  <Image>C:\Windows\System32\java.exe</Image>
 	  <Image>C:\Windows\System32\LogonUI.exe</Image>
 	  <Image>C:\Windows\System32\wbem\unsecapp.exe</Image>
 	  <Image>C:\Windows\System32\SpatialAudioLicenseSrv.exe</Image>
@@ -202,6 +204,7 @@
 	  <CommandLine condition="end with">Find "RUNNING"</CommandLine>
 	  <CommandLine condition="end with">config winlogbeat start=delayed-auto</CommandLine>
       <CommandLine>C:\Windows\system32\svchost.exe -k netsvcs -s SessionEnv</CommandLine>
+	  <CommandLine>C:\Windows\system32\wsmprovhost.exe -Embedding</CommandLine>
       <CommandLine>C:\Windows\system32\svchost.exe -k localSystemNetworkRestricted -p -s fhsvc</CommandLine>
       <CommandLine>C:\Windows\system32\SearchIndexer.exe /Embedding</CommandLine>
       <CommandLine>C:\Windows\system32\svchost.exe -k netsvcs</CommandLine>
@@ -333,6 +336,7 @@
     </FileCreateTime>
     <FileCreateTime onmatch="exclude">
       <Image condition="contains">setup</Image>
+	  <Image condition="contains">miniunz.exe</Image>
       <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
       <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
       <Image condition="image">OneDrive.exe</Image>
@@ -433,6 +437,13 @@
     </NetworkConnect>
     <NetworkConnect onmatch="exclude">
 	  <Image condition="end with">\Gamma\Horizon\Communicator.exe</Image>
+	  <Image condition="end with">MedicalInformatics.exe</Image>
+	  <Image condition="end with">lgbsvc.exe</Image>
+	  <Image condition="end with">ngvpnmgr.exe</Image>
+	  <Image condition="end with">GoogleUpdate.exe</Image>
+	  <Image condition="end with">LogMeIn.exe</Image>
+	  <Image condition="end with">SFTPSendService.exe</Image>
+	  <Image condition="end with">iGPRClinical.exe</Image>
 	  <Image condition="end with">Chronicall Desktop.exe</Image>
 	  <Image condition="end with">AEMAgent.exe</Image>
 	  <Image condition="end with">WindowsService.exe</Image>
@@ -443,10 +454,15 @@
 	  <Image condition="end with">\Teams\current\Teams.exe</Image>
 	  <Image condition="end with">\Teams\stage\Teams.exe</Image>
 	  <Image condition="end with">MsMpEng.exe</Image>
+	  <Image condition="end with">MedicalInformatics.exe</Image>
 	  <Image condition="end with">NisSrv.exe</Image>
 	  <Image condition="end with">AuthManSvr.exe</Image>
       <Image>C:\Program Files\ESET\ESET Nod32 Antivirus\ekrn.exe</Image>
       <Image condition="image">Spotify.exe</Image>
+	  <Image condition="image">chrome.exe</Image>
+	  <Image condition="image">iGPR.exe</Image>
+	  <Image condition="image">INRstarWindows.exe</Image>
+	  <Image condition="image">MedicalInformatics.exe</Image>
       <Image condition="image">OneDrive.exe</Image>
       <Image condition="image">OneDriveStandaloneUpdater.exe</Image>
       <Image>C:\Program Files (x86)\Sophos\Remote Management System\RouterNT.exe</Image>
@@ -462,9 +478,6 @@
       <DestinationHostname condition="end with">microsoft.com</DestinationHostname>
     </NetworkConnect>
     <ProcessTerminate onmatch="include">
-      <Image condition="begin with">C:\Users</Image>
-      <Image condition="begin with">C:\Temp</Image>
-      <Image condition="begin with">C:\Windows\Temp</Image>
     </ProcessTerminate>
     <DriverLoad onmatch="include" />
     <DriverLoad onmatch="exclude">
@@ -503,6 +516,9 @@
 	  <SourceImage condition="begin with">C:\Program Files (x86)\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="begin with">C:\Program Files\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="end with">mcshield.exe</SourceImage>
+	  <SourceImage condition="end with">MsSenseS.exe</SourceImage>
+	  <SourceImage condition="end with">MsMpEng.exe</SourceImage>
+	  <SourceImage condition="end with">msiexec.exe</SourceImage>
 	  <SourceImage condition="end with">VsTskMgr.exe</SourceImage>
 	  <SourceImage condition="end with">pmfexe.exe</SourceImage>
 	  <SourceImage condition="end with">RapportMgmtService.exe</SourceImage>
@@ -547,8 +563,6 @@
       <TargetFilename condition="end with">.aspx</TargetFilename>
       <TargetFilename condition="end with">.potm</TargetFilename>
       <TargetFilename condition="end with">.vbe</TargetFilename>
-      <TargetFilename condition="end with" name="technique_id=T1086,technique_name=PowerShell">.ps2</TargetFilename>
-      <TargetFilename condition="end with" name="technique_id=T1086,technique_name=PowerShell">.ps1</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\Tasks\</TargetFilename>
       <TargetFilename condition="end with">.iqy</TargetFilename>
       <TargetFilename condition="end with">.war</TargetFilename>
@@ -605,11 +619,19 @@
       <TargetFilename condition="begin with" name="technique_id=T1047,technique_name=File System Permissions Weakness">C:\Temp\</TargetFilename>
     </FileCreate>
     <FileCreate onmatch="exclude">
+	  <Image condition="end with">BackgroundTransferHost.exe</Image>
 	  <Image>C:\Program Files\Common Files\McAfee\SystemCore\mcshield.exe</Image>
 	  <Image condition="end with">AEMAgent.exe</Image>
 	  <Image condition="end with">miniunz.exe</Image>
 	  <Image condition="end with">invcol.exe</Image>
 	  <Image condition="end with">java.exe</Image>
+	  <Image condition="contains">McAfee</Image>
+	  <Image condition="begin with">C:\Program Files</Image>
+	  <Image condition="end with">rundll32.exe</Image>
+	  <Image condition="end with">mysqld-nt.exe</Image>
+	  <Image condition="end with">setup.exe</Image>
+	  <Image condition="begin with">C:\Program Files</Image>
+	  <Image condition="begin with">C:\Program Files (x86)</Image>
 	  <Image condition="end with">beserver.exe</Image>
 	  <Image condition="end with">CagService.exe</Image>
 	  <Image condition="end with">System</Image>
@@ -626,6 +648,8 @@
 	  <Image condition="end with">OneDriveSetup.exe</Image>
 	  <Image condition="end with">spoolsv.exe</Image>
 	  <Image condition="end with">OfficeClickToRun.exe</Image>
+      <TargetFilename condition="end with">.ps2</TargetFilename>
+      <TargetFilename condition="end with">.ps1</TargetFilename>
 	  <Image condition="end with">svchost.exe</Image>
 	  <Image condition="end with">ProvTool.exe</Image>
 	  <Image condition="end with">SetupHost.exe</Image>
@@ -659,7 +683,11 @@
 	  <TargetFilename condition="end with">.dat</TargetFilename>
 	  <TargetFilename condition="end with">.lnk</TargetFilename>
 	  <TargetFilename condition="end with">.temp</TargetFilename>
-      <TargetFilename condition="begin with">C:\Windows\System32\DriverStore\Temp\</TargetFilename>
+	  <TargetFilename condition="end with">.dll</TargetFilename>
+      <TargetFilename condition="begin with">C:\Program Files</TargetFilename>
+	  <TargetFilename condition="begin with">C:\Program Files (x86)</TargetFilename>
+	  <TargetFilename condition="begin with">C:\Windows\winlogbeat</TargetFilename>
+	  <TargetFilename condition="begin with">C:\Windows\System32\DriverStore\Temp\</TargetFilename>
       <TargetFilename condition="begin with">C:\$WINDOWS.~BT\Sources\SafeOS\SafeOS.Mount\</TargetFilename>
       <TargetFilename condition="begin with">C:\Windows\System32\Tasks\Microsoft\Windows\PLA\FabricTraces</TargetFilename>
       <TargetFilename condition="contains">\AppData\Roaming\Microsoft\Windows\Recent\</TargetFilename>
