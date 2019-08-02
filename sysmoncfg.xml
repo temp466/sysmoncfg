@@ -438,6 +438,8 @@
     </NetworkConnect>
     <NetworkConnect onmatch="exclude">
 	  <Image condition="end with">PRTG Probe.exe</Image>
+	  <Image condition="end with">mmc.exe</Image>
+	  <Image condition="contains">bomgar</Image>
 	  <Image condition="end with">accuRx.Host.exe</Image>
 	  <Image condition="end with">\Gamma\Horizon\Communicator.exe</Image>
 	  <Image condition="end with">MedicalInformatics.exe</Image>
