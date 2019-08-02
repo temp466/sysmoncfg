@@ -1,4 +1,4 @@
-<!--0.7-->
+<!--0.8-->
 <Sysmon schemaversion="4.1">
   <EventFiltering>
     <ProcessCreate onmatch="include">
@@ -186,14 +186,12 @@
       <Image>C:\Windows\System32\MusNotificationUx.exe</Image>
 	  <Image>C:\Windows\System32\dsregcmd.exe</Image>
 	  <Image>C:\Windows\System32\gpupdate.exe</Image>
-	  <Image>C:\Windows\System32\java.exe</Image>
+	  <Image>java.exe</Image>
 	  <Image>C:\Windows\System32\LogonUI.exe</Image>
 	  <Image>C:\Windows\System32\wbem\unsecapp.exe</Image>
 	  <Image>C:\Windows\System32\SpatialAudioLicenseSrv.exe</Image>
 	  <Image>C:\Windows\System32\WerFault.exe</Image>
 	  <Image>C:\Windows\System32\taskhostw.exe</Image>
-	  <Image>C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd32.exe</Image>
-	  <Image>C:\Program Files (x86)\Adobe\Acrobat Reader DC\Reader\AcroRd64.exe</Image>
       <Image condition="end with">C:\Windows\System32\CompatTelRunner.exe</Image>
 	  <CommandLine condition="end with">winlogbeat</CommandLine>
 	  <CommandLine condition="end with">Sysmon</CommandLine>
@@ -292,6 +290,8 @@
       <CommandLine>C:\Windows\system32\svchost.exe -k localServiceAndNoImpersonation</CommandLine>
 	  <CommandLine condition="end with">sysmon_winlogbeat_install_update.bat</CommandLine>
       <IntegrityLevel>AppContainer</IntegrityLevel>
+	  <ParentImage>sqlservr.exe</ParentImage>
+	  <ParentImage>java.exe</ParentImage>
       <ParentImage>C:\Windows\winlogbeat\winlogbeat.exe</ParentImage>
 	  <ParentImage>D:\Program Files\SplunkUniversalForwarder\bin\splunk.exe</ParentImage>
 	  <ParentImage>C:\Windows\winlogbeat\winlogbeat.exe</ParentImage>
@@ -336,6 +336,7 @@
     </FileCreateTime>
     <FileCreateTime onmatch="exclude">
       <Image condition="contains">setup</Image>
+	  <Image condition="contains">DropboxClient</Image>
 	  <Image condition="contains">miniunz.exe</Image>
       <Image condition="end with">Root\VFS\ProgramFilesX86\Google\Chrome\Application\chrome.exe</Image>
       <Image condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
@@ -436,6 +437,8 @@
       <DestinationPort name="technique_id=T1021,technique_name=Remote Services">5800</DestinationPort>
     </NetworkConnect>
     <NetworkConnect onmatch="exclude">
+	  <Image condition="end with">PRTG Probe.exe</Image>
+	  <Image condition="end with">accuRx.Host.exe</Image>
 	  <Image condition="end with">\Gamma\Horizon\Communicator.exe</Image>
 	  <Image condition="end with">MedicalInformatics.exe</Image>
 	  <Image condition="end with">lgbsvc.exe</Image>
@@ -516,6 +519,9 @@
 	  <SourceImage condition="begin with">C:\Program Files (x86)\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="begin with">C:\Program Files\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="end with">mcshield.exe</SourceImage>
+	  <SourceImage condition="end with">spoolsv.exe</SourceImage>
+	  <SourceImage condition="end with">stacheck.exe</SourceImage>
+	  <SourceImage condition="end with">AEMAgent.exe</SourceImage>
 	  <SourceImage condition="end with">MsSenseS.exe</SourceImage>
 	  <SourceImage condition="end with">MsMpEng.exe</SourceImage>
 	  <SourceImage condition="end with">msiexec.exe</SourceImage>
@@ -622,6 +628,8 @@
 	  <Image condition="end with">BackgroundTransferHost.exe</Image>
 	  <Image>C:\Program Files\Common Files\McAfee\SystemCore\mcshield.exe</Image>
 	  <Image condition="end with">AEMAgent.exe</Image>
+	  <Image condition="end with">MsMpEng.exe</Image>
+	  <Image condition="end with">EmisWeb.exe</Image>
 	  <Image condition="end with">miniunz.exe</Image>
 	  <Image condition="end with">invcol.exe</Image>
 	  <Image condition="end with">java.exe</Image>
