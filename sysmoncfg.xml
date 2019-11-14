@@ -521,6 +521,10 @@
 	  <SourceImage condition="begin with">C:\Program Files (x86)\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="begin with">C:\Program Files\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="end with">mcshield.exe</SourceImage>
+	  <SourceImage condition="end with">winvnc.exe</SourceImage>
+	  <SourceImage condition="end with">srservice.exe</SourceImage>
+	  <SourceImage condition="end with">srmanager.exe.exe</SourceImage>
+	  <SourceImage condition="end with">dsm_ism_srvmgr.exe</SourceImage>
 	  <SourceImage condition="end with">spoolsv.exe</SourceImage>
 	  <SourceImage condition="end with">stacheck.exe</SourceImage>
 	  <SourceImage condition="end with">AEMAgent.exe</SourceImage>
