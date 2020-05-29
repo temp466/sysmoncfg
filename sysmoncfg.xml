@@ -1,4 +1,4 @@
-<!--1.2-->
+<!--1.3-->
 <Sysmon schemaversion="4.1">
   <EventFiltering>
     <ProcessCreate onmatch="exclude">
@@ -12,7 +12,11 @@
 	  <Image condition="end with">gpupdate.exe</Image>
 	  <Image condition="end with">Sysmon64.exe</Image>
 	  <Image condition="end with">rundll32.exe</Image>
-	  <Image condition="end with">Teams.exe</Image>
+	  <Image condition="end with">smartscreen.exe</Image>
+	  <Image condition="end with">Sysmon.exe</Image>
+	  <Image condition="end with">postgres.exe</Image>
+	  <Image condition="end with">SenseCncProxy.exe</Image>
+	  <Image condition="end with">esif_assist_64.exe</Image>
       <Image>C:\Program Files\Malwarebytes\Anti-Malware\mbamtray.exe</Image>
       <Image>C:\Windows\System32\conhost.exe</Image>
       <Image>C:\Program Files (x86)\Trend Micro\OfficeScan Client\TmExtIns.exe</Image>
@@ -226,6 +230,8 @@
 	  <Image condition="contains">Update\</Image>
 	  <Image condition="end with">redist.exe</Image>
 	  <Image condition="contains">miniunz.exe</Image>
+	  <Image condition="contains">AppData\Local\Google\Chrome\Application\chrome.exe</Image>
+	  <Image condition="contains">AppData\Local\Microsoft\Teams\current\Teams.exe</Image>
       <Image condition="image">OneDrive.exe</Image>
     </FileCreateTime>
 	
@@ -338,6 +344,8 @@
 	  <Image condition="contains">\AppData\Local\WebEx\WebEx\</Image>
 	  <Image condition="end with">mmc.exe</Image>
 	  <Image condition="contains">bomgar</Image>
+	  <Image condition="contains">AppData\Local\WebEx\WebEx\</Image>
+	  <Image condition="contains">AppData\Local\Vivaldi\Application\vivaldi.exe</Image>
 	  <Image condition="end with">accuRx.Host.exe</Image>
 	  <Image condition="end with">\Gamma\Horizon\Communicator.exe</Image>
 	  <Image condition="end with">MedicalInformatics.exe</Image>
@@ -420,6 +428,8 @@
 	  <SourceImage condition="begin with">C:\Program Files (x86)\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="begin with">C:\Program Files\McAfee\VirusScan Enterprise\</SourceImage>
 	  <SourceImage condition="end with">mcshield.exe</SourceImage>
+	  <SourceImage condition="end with">AppData\Local\Google\Chrome\Application\chrome.exe</SourceImage>
+	  <SourceImage condition="end with">\AppData\Local\Microsoft\Teams\current\Teams.exe</SourceImage>
 	  <SourceImage condition="end with">winvnc.exe</SourceImage>
 	  <SourceImage condition="end with">srservice.exe</SourceImage>
 	  <SourceImage condition="end with">srmanager.exe.exe</SourceImage>
@@ -539,6 +549,7 @@
 	  <Image condition="end with">invcol.exe</Image>
 	  <Image condition="end with">java.exe</Image>
 	  <Image condition="contains">McAfee</Image>
+	  <Image condition="contains">DrvInst.exe</Image>
 	  <Image condition="begin with">C:\Program Files</Image>
 	  <Image condition="end with">rundll32.exe</Image>
 	  <Image condition="end with">mysqld-nt.exe</Image>
@@ -696,6 +707,9 @@
     <RegistryEvent onmatch="exclude">
 	  <Image condition="end with">svchost.exe</Image>
 	  <Image condition="end with">services.exe</Image>
+	  <Image condition="end with">ssvagent.exe</Image>
+	  <Image condition="end with">CompatTelRunner.exe</Image>
+	  <Image condition="end with">DFSRs.exe</Image>
       <Image condition="image">C:\WINDOWS\system32\backgroundTaskHost.exe</Image>
       <Image>C:\Program Files\McAfee\Agent\x86\macompatsvc.exe</Image>
       <Image>C:\Program Files\Windows Defender\MsMpEng.exe</Image>
